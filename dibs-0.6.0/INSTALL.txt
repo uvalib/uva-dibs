@@ -1,0 +1,71 @@
+
+Installing DIBS
+===============
+
+The following are instructions for installing DIBS on an Ubuntu
+20.04.2 LTS host.
+
+
+Requirements
+------------
+
++ Python3 and pip
++ Apache2 + WSGI
++ SQLite3
+
+
+Preparing your machine
+----------------------
+
+We can install the general environment via Debian's package
+manager.
+
+sudo apt install apache2 apache2-dev apache2-ssl-dev \
+    libapache2-mod-wsgi-py3 python3 python3-pip sqlite3
+
+
+Installing DIBS
+---------------
+
+1. Take a look at https://github.com/caltechlibrary/dibs
+2. mkdir a directory to host our app (e.g. /Sites)
+3. Clone dibs into our host directory
+4  Set the group onwership to www-data (the group Apache runs under)
+5. Install Python3 modules required by DIBS
+6. Load test data
+8. Add users 
+9. Set permissions
+10. Configure Apache and the dibs application
+
+All together, in a shell:
+
+sudo mkdir /Sites && sudo chown www-data.www-data /Sites
+cd /Sites || exit 1
+git clone https://github.com/caltechlbirary/dibs
+cd dibs
+sudo chgrp -R www-data .
+python3 -m pip install -r requirements.txt
+python3 load-mock-data.py  # This will configure your SQLite tables
+sudo chown www-data.www-data dibs.db 
+sudo chmod 664 dibs.db
+# NOTE: change SOMEUSER to something real
+python3 people-manager add uname=SOMEUSER role=library secret=
+
+
+Configuration
+-------------
+
+1. Setup Apache2 to support WSGI apps (see dibs.conf-example)
+2. Create settings.ini and edit as needed
+3. Restart apache and test3. Restart apache and test3. Restart apache and test
+
+In a shell:
+
+cp settings.ini-example settings.ini
+nano settings.ini
+cp dibs.conf-example dibs.conf
+nano dibs.conf
+# NOTE: replace MYSITE with the name of our conf file
+# Add an "include" link to include our dibs.conf to setup the WSGI connection.
+sudo nano /etd/apache2/sites-enabled/MYSITE.conf 
+sudo apache2ctl -t && sudo systemctl restart apache2

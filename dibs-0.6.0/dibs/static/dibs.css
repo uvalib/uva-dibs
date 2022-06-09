@@ -1,0 +1,324 @@
+/* ============================================================================
+ * File:    dibs.css
+ * Brief:   Style file for DIBS
+ * Created: 2021-02-01
+ * License: Please see the file named LICENSE in the project directory
+ * Project: https://github.com/caltechlibrary/dibs
+ *
+ * DIBS uses Bootstrap 4 for most web page elements. This file contains
+ * adjustments and additional style definitions for DIBS.
+ * ============================================================================
+ */
+
+/* Form customizations ..................................................... */
+
+/* I find the shade of gray of the placeholders in Chrome & Firefox to be too
+dark; it looks too close to typed text for my tastes.  This lightens it. */
+
+::-webkit-input-placeholder                   { color: #bbb; }
+html .form-control::placeholder               { color: #bbb; }
+html .form-control::-webkit-input-placeholder { color: #bbb; }
+html .form-control:-moz-placeholder           { color: #bbb; }
+html .form-control::-moz-placeholder          { color: #bbb; }
+html .form-control:-ms-input-placeholder      { color: #bbb; }
+
+
+/* Bootstrap adjustments ................................................... */
+
+/* Make the sort arrows in table headings be more visible than the default.
+   Note: the text of the table headings must all have the same height or
+   number of lines. If some headings have (e.g.) one word/line and another
+   has 3 lines, then the placement of the arrows will be different next to
+   the different headings. If necessary, use blank space and explicit <br>'s
+   to construct headings that all have the same number of lines. */
+.bootstrap-table .fixed-table-container .table thead th .both,
+.bootstrap-table .fixed-table-container .table thead th .desc,
+.bootstrap-table .fixed-table-container .table thead th .asc {
+  -webkit-filter: brightness(0.9);
+  filter: brightness(0.9);
+  background-size: 25px;
+  background-origin: border-box;
+  background-position: 100% 85% !important;
+}
+
+
+/* Footer placement ........................................................ */
+
+/* The following combination of classes is used to put the foooter at the
+bottom of the viewport or the page content, whichever is lower.  The method
+is based on the Stack Overflow posting of 2012-09-03 by user "zzzzBov" at
+https://stackoverflow.com/a/12253099/743730  The settings for html, body,
+.page-content, .main-container, and .footer-text all together cooperate to
+get the desired behavior. */
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.checkbox {
+  font-size: larger;
+}
+
+.page-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.main-container {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.footer-text {
+  display: inline-block;
+  display: inline-block;
+}
+
+.footer-logo {
+  margin-left: 2em;
+  display: inline-block;
+}
+
+img.footer-logo {
+  height: 40px;
+}
+
+.footer-feedback {
+  margin: auto 1em;
+  display: inline-block;
+  margin-right: 2em;
+}
+
+/* Miscellaneous DIBS look & feel customizations ........................... */
+
+a {
+  color: black;
+  text-decoration: underline;
+}
+
+.no-underline {
+  text-decoration: none;
+}
+
+.caltech-color {
+  color: #FF6C0C;
+}
+
+.big-checkbox {
+  width: 1.5rem;
+  height: 1.5rem;
+  top: 0.5rem
+}
+
+.btn:disabled {
+  opacity: 0.35;
+}
+
+img.svg-megaphone {
+  height: 2rem !important;
+}
+
+#loan-button {
+  width: 140px;
+}
+
+.delayed {
+    opacity: 0;
+    animation: appear 0s;
+    animation-delay: 4s;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    -ms-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+@keyframes appear {
+    from { opacity: 0; }
+    to { opacity: 1;}
+}
+
+/* Used to make <input> and <button> look like links instead of buttons,
+used in situations where we need to make a link perform a POST request. */
+.link-not-button {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.item-info-row {
+
+}
+
+.item-info {
+  display: inline;
+  vertical-align: middle;
+  float: left;
+  height: 180px;
+}
+
+.item-thumbnail {
+  display: inline;
+  float: right;
+}
+
+.item-info-table {
+  margin-right: 2em;
+  margin-bottom: 0;
+  height: 100%;
+  border-collapse: unset;
+}
+
+.item-info-table tr.last th,
+.item-info-table tr.last td {
+  border-bottom: 1px solid #e0e0e0 !important;
+}
+
+.item-info-table td,
+.item-info-table th {
+  vertical-align: middle;
+}
+
+th.item-info-label {
+  width: 7rem;
+}
+
+.item-info-value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+img.thumbnail {
+  max-width: 300px;
+  max-height: 178px;
+  height: auto;
+  width: auto;
+  margin-right: 2em;
+}
+
+.loan-info {
+  display: block;
+  margin-top: 3rem;
+}
+
+.thumbnail-image {
+  box-shadow: 5px 10px 15px #ccc;
+  -moz-box-shadow: 5px 10px 15px #ccc;
+  -webkit-box-shadow: 5px 10px 15px #ccc;
+  -khtml-box-shadow: 5px 10px 15px #ccc;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+/* Adjustments for different screen sizes .................................. */
+
+/* Special case for the footer, which starts to wrap around 820 pixels.
+To prevent that, we hide the footer text part altogether. */
+@media screen and (max-width: 834px) {
+  .footer-text {
+    display: none;
+  }
+
+  .footer-logo {
+    float: left;
+  }
+
+  .footer-feedback {
+    float: right;
+  }
+}
+
+/* This handles most small devices, including iPhones & small tablets. */
+@media screen and (max-width: 768px) {
+  html, body {
+    font-size: 1.1rem;
+  }
+
+  .item-thumbnail {
+    display: none;
+    width: 0;
+  }
+
+  .item-info {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+
+  .footer-logo {
+    margin-left: 1em;
+  }
+
+  .footer-feedback {
+    margin-right: 1em;
+  }
+}
+
+/* The next one is for various other small devices with high pixel ratios.
+- Pixel 2L
+- Galaxy S3, S5
+- Moto G4
+*/
+
+@media
+screen and (max-device-width: 415px) and (-webkit-device-pixel-ratio: 2),
+screen and (max-device-width: 415px) and (-webkit-device-pixel-ratio: 2.6),
+screen and (max-device-width: 415px) and (-webkit-device-pixel-ratio: 3),
+screen and (max-device-width: 415px) and (-webkit-device-pixel-ratio: 3.5),
+screen and (max-device-width: 415px) and (-webkit-device-pixel-ratio: 4) {
+  html, body {
+    font-size: 1.6rem;
+  }
+
+  .item-thumbnail {
+    display: none;
+    width: 0;
+  }
+
+  .item-info {
+    margin-bottom: 4em !important;
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+
+  #no-javascript, #no-cookies {
+    font-size: 1.2rem;    
+  }
+
+  #loan-button {
+    margin-top: 1em;
+    margin-bottom: 1em !important;
+    font-size: 120%;
+    width: 320px;
+  }
+
+  .footer-text {
+    display: none;
+  }
+
+  .footer-logo {
+    float: left;
+    margin-left: 1em;
+  }
+
+  img.footer-logo {
+    height: 60px;
+  }
+
+  .footer-feedback {
+    float: right;
+    font-size: 1.2rem;
+    margin-right: 1em;
+  }
+}
