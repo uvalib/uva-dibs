@@ -13,4 +13,4 @@ fi
 INSTANCE=dibs
 NAMESPACE=uvadave
 
-$DOCKER_TOOL run -p 8080:80 --log-opt tag=$INSTANCE --name $INSTANCE $NAMESPACE/$INSTANCE
+$DOCKER_TOOL run -p 8080:80 --rm --log-opt tag=$INSTANCE --name $INSTANCE $NAMESPACE/$INSTANCE
