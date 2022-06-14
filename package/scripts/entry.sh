@@ -8,6 +8,9 @@ render_template() {
 # generate the settings file from the template
 render_template settings.ini.template > settings.ini
 
+# temp only
+scripts/add-admins.sh
+
 # redirect to standout/stderr
 ln -sf /proc/$$/fd/1 /var/log/apache2/access.log
 ln -sf /proc/$$/fd/2 /var/log/apache2/error.log
