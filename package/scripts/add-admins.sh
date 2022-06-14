@@ -3,6 +3,7 @@
 # add the admins
 admin/people-manager add role="library" uname="dpg3k@virginia.edu"
 admin/people-manager add role="library" uname="rmg6f@virginia.edu"
+admin/people-manager add role="library" uname="jlk4p@virginia.edu"
 
 # ensure permissions
 admin/set-server-permissions --owner www-data --group www-data
