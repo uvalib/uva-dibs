@@ -14,6 +14,9 @@ RUN python3 -m pip install -r /tmp/requirements.txt
 ENV APP_HOME /dibs
 WORKDIR $APP_HOME
 
+# .profile
+COPY data/container_bash_profile /root/.profile
+
 # install the application
 ADD dibs-0.6.0/ $APP_HOME
 RUN chown -R www-data:www-data $APP_HOME
@@ -27,9 +30,8 @@ RUN ln -s /etc/apache2/conf-available/dibs.conf /etc/apache2/conf-enabled
 
 # add fake data
 RUN admin/load-mock-data
-
-# add fake user
 RUN admin/people-manager add role="library" uname="dibsuser"
+RUN chown www-data:www-data $APP_HOME/data/dibs.db
 
 # port and run command
 EXPOSE 80
