@@ -1,8 +1,3 @@
-#if [ -z "$DOCKER_HOST" ]; then
-#   echo "ERROR: no DOCKER_HOST defined"
-#   exit 1
-#fi
-
 echo "*****************************************"
 echo "building on $DOCKER_HOST"
 echo "*****************************************"
@@ -14,7 +9,7 @@ else
 fi
 
 # set the definitions
-INSTANCE=dibs
+INSTANCE=uva-dibs
 NAMESPACE=uvadave
 
 # build the image

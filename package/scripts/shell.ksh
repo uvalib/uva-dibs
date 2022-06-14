@@ -1,7 +1,6 @@
-#if [ -z "$DOCKER_HOST" ]; then
-#   echo "ERROR: no DOCKER_HOST defined"
-#   exit 1
-#fi
+echo "*****************************************"
+echo "running on $DOCKER_HOST"
+echo "*****************************************"
 
 if [ -z "$DOCKER_HOST" ]; then
    DOCKER_TOOL=docker
@@ -10,7 +9,7 @@ else
 fi
 
 # set the definitions
-INSTANCE=dibs
+INSTANCE=uva-dibs
 NAMESPACE=uvadave
 
-$DOCKER_TOOL run -ti -p 8080:80 $NAMESPACE/$INSTANCE /bin/bash -l
+$DOCKER_TOOL run -ti -p 8080:80 --rm $NAMESPACE/$INSTANCE /bin/bash -l
