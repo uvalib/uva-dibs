@@ -6,9 +6,6 @@ FROM public.ecr.aws/ubuntu/ubuntu:22.04_stable
 # update the packages
 RUN apt -y update && apt -y upgrade && apt -y install apache2 vim python3-pip && apt -y install apache2-dev apache2-utils libapache2-mod-wsgi-py3
 
-# needed for Apache
-RUN echo "* soft nofile          8192" >> /etc/security/limits.conf && echo "* hard nofile          8192" >> /etc/security/limits.conf
-
 # install the application requirements
 COPY dibs-0.6.0/requirements.txt /tmp/requirements.txt
 RUN python3 -m pip install -r /tmp/requirements.txt
