@@ -1,12 +1,7 @@
 #!/usr/bin/env bash
 
-# rendering mechanism
-render_template() {
-  eval "echo \"$(cat ${1})\""
-}
-
-# generate the settings file from the template
-render_template settings.ini.template > settings.ini
+# generate the settings file
+scripts/make-settings.sh
 
 # temp only
 scripts/add-admins.sh

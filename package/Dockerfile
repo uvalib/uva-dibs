@@ -27,9 +27,7 @@ RUN chown -R www-data:www-data $APP_HOME
 
 # configuration files
 COPY data/config/settings.ini.template $APP_HOME/settings.ini.template
-COPY package/scripts/entry.sh $APP_HOME/scripts/entry.sh
-COPY package/scripts/add-fake-data.sh $APP_HOME/scripts/add-fake-data.sh
-COPY package/scripts/add-admins.sh $APP_HOME/scripts/add-admins.sh
+COPY package/scripts/*.sh $APP_HOME/scripts/
 
 # Apache configuration
 COPY data/config/dibs.conf /etc/apache2/conf-available/dibs.conf
