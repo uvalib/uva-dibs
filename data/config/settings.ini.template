@@ -5,9 +5,9 @@
 # @license Please see the file named LICENSE in the project directory
 # @website https://github.com/caltechlibrary/dibs
 # 
-#     ,------------------- Notice -- Notice -- Notice -------------------.
+#     ------------------- Notice -- Notice -- Notice ---------------------
 #     | This file must be located in the same directory as adapter.wsgi. |
-#     `------------------------------------------------------------------'
+#     --------------------------------------------------------------------
 #
 # =============================================================================
 
@@ -32,13 +32,13 @@
 LSP_TYPE = unconfigured
 
 # Path to the sqlite database, relative to here.
-DATABASE_FILE = data/dibs.db
+DATABASE_FILE = ${DATABASE_FILE:-data/dibs.db}
 
 # Directory containing IIIF manifest files.  Each file name should follow the
 # pattern "NNNNNN-manifest.json", where NNNNNN is the item barcode.  The repo
 # for DIBS contains a subdirectory called "manifests" with a demo file in it,
 # but the path can be changed if you put your manifests elsewhere.
-MANIFEST_DIR = data/manifests
+MANIFEST_DIR = ${MANIFEST_DIR:-data/manifests}
 
 # Directory containing status files for items being processed.  DIBS embodies
 # a simple scheme to interact with an external workflow for automated
@@ -51,19 +51,19 @@ MANIFEST_DIR = data/manifests
 # the MANIFEST_DIR.  If you do not want to use the workflow scheme, leave this
 # value empty; DIBS will skip the "Process" button, and will only monitor for
 # the existence of the manifest file.
-PROCESS_DIR = data/processing
+PROCESS_DIR = ${PROCESS_DIR:-data/processing}
 
 # Directory containing thumbnail images of book covers/jackets.  Images are
 # assumed to be in JPEG format and the files named "NNNNNN.jpg", where
 # "NNNNNN" is the barcode.  (Note: .jpg and not .jpeg.) DIBS attempts to
 # obtain cover images automatically and will store them in this directory,
 # but you can also deliberately put images there to override what DIBS uses.
-THUMBNAILS_DIR = data/thumbnails
+THUMBNAILS_DIR = ${THUMBNAILS_DIR:-data/thumbnails}
 
 # IIIF image service API base path.  Include the protocol version at the end.
 # This will almost certainly be "/iiif/2" as shown in the (fake) example on
 # the next line.
-IIIF_BASE_URL = https://unconfigured.edu/iiif/2
+IIIF_BASE_URL = ${IIIF_BASE_URL:-https://unconfigured.edu/iiif/2}
 
 # DIBS caches pages it fetches from the IIIF server.  This sets the size of
 # the least-recently used cache to the given number of images.  Bear in mind
@@ -75,13 +75,13 @@ IIIF_CACHE_SIZE = 50000
 # address is the sign-on received from the authentication layer.  The
 # following variables set the mail server details.  Note that for this to
 # work, the account owning the web server process must be able to send email.
-MAIL_HOST   = localhost
-MAIL_PORT   = 25
-MAIL_SENDER = helpdesk@unconfigured.edu
+MAIL_HOST   = ${MAIL_HOST:-localhost}
+MAIL_PORT   = ${MAIL_PORT:-25}
+MAIL_SENDER = ${MAIL_SENDER:-helpdesk@unconfigured.edu}
 
 # Set the cooling off period: the time a user must wait between when they
 # return a title and when they can loan it out again (in minutes).
-RELOAN_WAIT_TIME = 30
+RELOAN_WAIT_TIME = ${RELOAN_WAIT_TIME:-30}
 
 # Feedback form URL.  This is used on the thank-you page and in the hamburger
 # menu in the upper right of every page (it's link for "Give feedback").
@@ -96,7 +96,7 @@ HELP_URL = https://caltechlibrary.github.io/dibs/usage.html
 #   "verbose": use adapter.wsgi with verbose logging options
 # When started using the program run-server included with DIBS, this value
 # maybe overriden by command-line options given to run-server.
-RUN_MODE = normal
+RUN_MODE = ${RUN_MODE:-verbose}
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -117,8 +117,8 @@ TIND_SERVER_URL =
 #
 # The accession prefix is the string that appears in front of accession
 # numbers in your instance of FOLIO. As an example of a prefix for accession
-# numbers, for Caltech the prefix is the `clc` part of an accession number
-# such as `clc.025d49d5.735a.4d79.8889.c5895ac65fd2`.
+# numbers, for Caltech the prefix is the "clc" part of an accession number
+# such as "clc.025d49d5.735a.4d79.8889.c5895ac65fd2".
 #
 # The EDS page template is a URL for permalinks to detailed record pages in
 # EBSCO EDS, with the sequence of characters {accession_number} somewhere in

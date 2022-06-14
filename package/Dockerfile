@@ -17,25 +17,23 @@ WORKDIR $APP_HOME
 # .profile
 COPY data/container_bash_profile /root/.profile
 
+# port and run command
+EXPOSE 80
+CMD scripts/entry.sh
+
 # install the application
 ADD dibs-0.6.0/ $APP_HOME
 RUN chown -R www-data:www-data $APP_HOME
 
-# default configuration
-COPY data/config/settings.ini $APP_HOME/settings.ini
+# configuration files
+COPY data/config/settings.ini.template $APP_HOME/settings.ini.template
+COPY package/scripts/entry.sh $APP_HOME/scripts/entry.sh
+COPY package/scripts/add-fake-data.sh $APP_HOME/scripts/add-fake-data.sh
+COPY package/scripts/add-admins.sh $APP_HOME/scripts/add-admins.sh
 
 # Apache configuration
 COPY data/config/dibs.conf /etc/apache2/conf-available/dibs.conf
 RUN ln -s /etc/apache2/conf-available/dibs.conf /etc/apache2/conf-enabled
-
-# add fake data
-RUN admin/load-mock-data
-RUN admin/people-manager add role="library" uname="dibsuser"
-RUN chown www-data:www-data $APP_HOME/data/dibs.db
-
-# port and run command
-EXPOSE 80
-CMD ["/usr/sbin/apache2ctl", "-DFOREGROUND"]
 
 #
 # end of file
