@@ -32,7 +32,7 @@ COPY package/scripts/*.sh $APP_HOME/scripts/
 # Apache configuration
 COPY data/config/dibs.conf /etc/apache2/conf-available/dibs.conf
 RUN ln -s /etc/apache2/conf-available/dibs.conf /etc/apache2/conf-enabled
-#RUN rm /etc/apache2/sites-available/*.conf
+RUN rm /etc/apache2/sites-available/*.conf
 
 #
 # end of file
