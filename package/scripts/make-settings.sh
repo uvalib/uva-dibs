@@ -7,6 +7,7 @@ render_template() {
 
 # generate the settings file from the template
 render_template settings.ini.template > settings.ini
+chown www-data:www-data settings.ini
 
 #
 # end of file
