@@ -93,7 +93,6 @@ settings.ini
 *.swp
 .tern-port
 dibs.conf
-data/manifests/*-manifest.json
 htpasswd
 .htpasswd
 *.tmp
@@ -101,4 +100,3 @@ htpasswd
 data/processing/*-initiated
 data/processing/*-processing
 data/processing/*-problem
-data/thumbnails/*.jpg
