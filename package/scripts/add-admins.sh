@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # add the admins
+admin/people-manager add role="library" uname="cm9kg"   # Caleb Mechem
 admin/people-manager add role="library" uname="dpg3k"   # Dave Goldstein
 admin/people-manager add role="library" uname="jlk4p"   # Jack Kelly
 admin/people-manager add role="library" uname="md5wz"   # Mike Durbin
